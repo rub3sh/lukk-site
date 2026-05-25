@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 export const PROTECTION = {
   blockRightClick:  true,   // blocks browser context menu on right-click
   blockDevTools:    true,   // blocks F12 / Ctrl+Shift+I/J/C/K / Ctrl+U shortcuts
-  showWarningModal: false,   // shows the warning notice
+  showWarningModal: true,   // shows the warning notice
   modalDelaySeconds: 30,    // ← seconds before the warning modal appears
 } as const
 // ══════════════════════════════════════════════════════════
