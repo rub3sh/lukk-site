@@ -1,0 +1,65 @@
+{
+  "name": "LUKK Automations — Industrial Robotics & Automation",
+  "short_name": "LUKK",
+  "description": "Custom AMR, AGV, FMR, AI Vision and full-stack robotics platforms across Singapore, Malaysia, India & Indonesia. 100% custom-engineered. Deployed in weeks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#09090b",
+  "theme_color": "#a3c59a",
+  "lang": "en-SG",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Solutions",
+      "short_name": "Solutions",
+      "description": "View our AMR, AGV, FMR, AI Vision and robotic arm solutions",
+      "url": "/#solutions",
+      "icons": [{ "src": "/icon.png", "sizes": "any", "type": "image/png" }]
+    },
+    {
+      "name": "Industries We Serve",
+      "short_name": "Industries",
+      "description": "Semiconductor, pharma, logistics, food, cleanroom and more",
+      "url": "/#industries",
+      "icons": [{ "src": "/icon.png", "sizes": "any", "type": "image/png" }]
+    },
+    {
+      "name": "Request a Demo",
+      "short_name": "Demo",
+      "description": "Book a custom robotics demo for your facility",
+      "url": "/#contact",
+      "icons": [{ "src": "/icon.png", "sizes": "any", "type": "image/png" }]
+    },
+    {
+      "name": "About LUKK",
+      "short_name": "About",
+      "description": "Our team, mission and 4-country footprint",
+      "url": "/#about",
+      "icons": [{ "src": "/icon.png", "sizes": "any", "type": "image/png" }]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://www.lukkautomations.com/manifest.json"
+    }
+  ],
+  "prefer_related_applications": false
+}
