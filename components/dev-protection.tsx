@@ -89,13 +89,13 @@ export default function DevProtection() {
       document.addEventListener("keydown",      onKeyDown, true)
     }
 
-    // ── Timed notice — fires on desktop after modalDelaySeconds ───────────
+    // ── Timed notice — fires on ALL devices after modalDelaySeconds ──────
     let timer: ReturnType<typeof setTimeout> | undefined
-    if (PROTECTION.showWarningModal && !touch) {
+    if (PROTECTION.showWarningModal) {
       timer = setTimeout(() => lock("timer"), PROTECTION.modalDelaySeconds * 1000)
     }
 
-    // ── Skip DevTools polling on touch devices ────────────────────────────
+    // ── Skip DevTools polling on touch devices (keep timer above) ─────────
     if (!PROTECTION.showWarningModal || touch) {
       return () => {
         if (!touch) {
