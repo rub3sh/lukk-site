@@ -14,15 +14,26 @@ export default function Navbar() {
     { label: "Careers",    href: "#careers"    },
   ];
 
-  // Force scroll even if the hash is already in the URL
   function scrollTo(href: string) {
     const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.pushState(null, "", href);
+    if (open) {
+      // Close the menu first, then scroll after the exit animation (300ms) completes.
+      // Scrolling while the menu is collapsing shifts the layout and breaks the target position.
+      setOpen(false);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.pushState(null, "", href);
+        }
+      }, 320);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", href);
+      }
     }
-    setOpen(false);
   }
 
   return (

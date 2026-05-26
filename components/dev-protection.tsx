@@ -65,12 +65,14 @@ export default function DevProtection() {
   }, [])
 
   useEffect(() => {
-    // ── Right-click block ──────────────────────────────────────────────────
+    const touch = isTouchOnlyDevice()
+
+    // ── Right-click block (desktop only — don't interfere with mobile taps) ─
     const onContextMenu = (e: MouseEvent) => {
       if (PROTECTION.blockRightClick) e.preventDefault()
     }
 
-    // ── Keyboard shortcut block ────────────────────────────────────────────
+    // ── Keyboard shortcut block (desktop only) ─────────────────────────────
     const onKeyDown = (e: KeyboardEvent) => {
       if (!PROTECTION.blockDevTools) return
       const k = e.key.toUpperCase()
@@ -82,19 +84,22 @@ export default function DevProtection() {
       if (blocked) {
         e.preventDefault()
         e.stopPropagation()
-        // Only trigger warning on non-touch devices
-        if (PROTECTION.showWarningModal && !isTouchOnlyDevice()) lock()
+        if (PROTECTION.showWarningModal) lock()
       }
     }
 
-    document.addEventListener("contextmenu", onContextMenu)
-    document.addEventListener("keydown",      onKeyDown, true)
+    if (!touch) {
+      document.addEventListener("contextmenu", onContextMenu)
+      document.addEventListener("keydown",      onKeyDown, true)
+    }
 
-    // ── Skip all size/console detection on phones, tablets, TVs ───────────
-    if (!PROTECTION.showWarningModal || isTouchOnlyDevice()) {
+    // ── Skip all detection on phones, tablets, TVs ────────────────────────
+    if (!PROTECTION.showWarningModal || touch) {
       return () => {
-        document.removeEventListener("contextmenu", onContextMenu)
-        document.removeEventListener("keydown",      onKeyDown, true)
+        if (!touch) {
+          document.removeEventListener("contextmenu", onContextMenu)
+          document.removeEventListener("keydown",      onKeyDown, true)
+        }
       }
     }
 
@@ -132,7 +137,7 @@ export default function DevProtection() {
 
     return () => {
       document.removeEventListener("contextmenu",      onContextMenu)
-      document.removeEventListener("keydown",           onKeyDown,  true)
+      document.removeEventListener("keydown",           onKeyDown,   true)
       document.removeEventListener("visibilitychange",  onVisible)
       window.removeEventListener("resize",              onResize)
       clearInterval(interval)
